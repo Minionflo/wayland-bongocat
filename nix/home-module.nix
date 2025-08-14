@@ -174,8 +174,6 @@ in
 
     # Create systemd user service if user is specified
     systemd.user.services.wayland-bongocat = mkIf cfg.autostart {
-      enable = true;
-
       Unit = {
         Description = "Wayland Bongo Cat Overlay";
         PartOf = [ "graphical-session.target" ];
