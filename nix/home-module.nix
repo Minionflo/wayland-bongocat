@@ -36,6 +36,8 @@ let
       # Debug mode
       enable_debug=${if cfg.enableDebug then "1" else "0"}
 
+      monitor=${toString cfg.monitor}
+
       # Input devices
       ${concatMapStringsSep "\n" (device: "keyboard_device=${device}") cfg.inputDevices}
     '';
@@ -156,6 +158,13 @@ in
         "/dev/input/event4"
         "/dev/input/event20"
       ];
+    };
+
+    monitor = mkOption {
+      type = types.str;
+      default = "";
+      description = "The monitor for the Cat";
+      example = "eDP-1";
     };
   };
 
