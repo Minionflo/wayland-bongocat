@@ -161,7 +161,7 @@ in
 
   config = mkIf cfg.enable {
     # Install the package system-wide
-    environment.systemPackages = [
+    home.packages = [
       cfg.package
 
       # Helper scripts
