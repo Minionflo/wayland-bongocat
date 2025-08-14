@@ -23,5 +23,6 @@
     )
     // {
       nixosModules.default = import ./nix/nixos-module.nix;
+      homeModule.default = import ./nix/home-module.nix;
     };
 }
