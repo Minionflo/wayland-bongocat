@@ -175,11 +175,18 @@ in
     # Create systemd user service if user is specified
     systemd.user.services.wayland-bongocat = mkIf cfg.autostart {
       enable = true;
-      description = "Wayland Bongo Cat Overlay";
-      wantedBy = [ "graphical-session.target" ];
-      partOf = [ "graphical-session.target" ];
-      after = [ "graphical-session.target" ];
-      serviceConfig = {
+
+      Unit = {
+        Description = "Wayland Bongo Cat Overlay";
+        PartOf = [ "graphical-session.target" ];
+        After = [ "graphical-session.target" ];
+      };
+
+      Install = {
+        WantedBy = [ "graphical-session.target" ];
+      };
+
+      Service = {
         Type = "exec";
         ExecStart = "${cfg.package}/bin/bongocat --config ${configFile}";
         Restart = "on-failure";
